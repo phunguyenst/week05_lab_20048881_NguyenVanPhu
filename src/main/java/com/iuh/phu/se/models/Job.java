@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "job")
 @NoArgsConstructor
@@ -25,4 +27,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(name = "comp_id")
     private Company company;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<JobSkill> jobSkills;
 }

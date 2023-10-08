@@ -1,14 +1,26 @@
 package com.iuh.phu.se.models;
 
+import com.iuh.phu.se.models.Address;
+import com.iuh.phu.se.models.CandidateSkill;
+import com.iuh.phu.se.models.Experience;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
+
+import java.util.List;
+
 
 @Entity
 @Table(name = "candidate")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(of = "{id}")
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,79 +37,15 @@ public class Candidate {
 
     @Column(columnDefinition = "varchar(15)")
     private String phone;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "address")
     private Address address;
 
-    public Candidate() {
-    }
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<CandidateSkill> candidateSkills;
 
-    public Candidate(long id, LocalDate dob, String email, String fullName, String phone, Address address) {
-        this.id = id;
-        this.dob = dob;
-        this.email = email;
-        this.fullName = fullName;
-        this.phone = phone;
-        this.address = address;
-    }
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Experience> experiences;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public LocalDate getDob() {
-        return dob;
-    }
-
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    @Override
-    public String toString() {
-        return "Candidate{" +
-                "id=" + id +
-                ", dob=" + dob +
-                ", email='" + email + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", phone='" + phone + '\'' +
-                ", address=" + address +
-                '}';
-    }
 }

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Table(name = "skill")
 @AllArgsConstructor
@@ -24,4 +26,7 @@ public class Skill {
 
     @Column(name = "skill_type")
     private SkillType skillType;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<JobSkill> jobSkills;
 }

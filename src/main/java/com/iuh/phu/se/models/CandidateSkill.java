@@ -2,6 +2,7 @@ package com.iuh.phu.se.models;
 
 
 import com.iuh.phu.se.enums.SkillLevel;
+import com.iuh.phu.se.ids.CandidateSkillID;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @Table(name = "candidate_skill")
+@IdClass(CandidateSkillID.class)
 public class CandidateSkill {
     @Id
     @ManyToOne

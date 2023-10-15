@@ -2,10 +2,7 @@ package com.iuh.phu.se.backend.models;
 
 import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @EqualsAndHashCode(of = {"id"})
 @Data
@@ -13,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "address")
-
+@Builder
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +30,22 @@ public class Address {
     @Column(name = "zipcode",columnDefinition = "varchar(7)")
     private String zipCode;
 
+    public Address(String street, String city, CountryCode country, String number, String zipCode) {
+        this.street = street;
+        this.city = city;
+        this.country = country;
+        this.number = number;
+        this.zipCode = zipCode;
+    }
 
+    @Override
+    public String toString() {
+        return
+                 street + '\'' +
+               city + '\'' +
+                 country +
+               number + '\'' +
+               zipCode + '\'' ;
 
-
+    }
 }

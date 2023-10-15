@@ -10,45 +10,46 @@ import com.iuh.phu.se.backend.repositories.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CandidateSkillService {
-    CandidateSkillRepository candidateSkillRepository;
-    CandidateRepository candidateRepository;
-    SkillRepository skillRepository;
-
-    @Autowired
-    public CandidateSkillService(CandidateSkillRepository candidateSkillRepository, CandidateRepository candidateRepository, SkillRepository skillRepository) {
-        this.candidateSkillRepository = candidateSkillRepository;
-        this.candidateRepository = candidateRepository;
-        this.skillRepository = skillRepository;
-    }
-
-    public boolean add(CandidateSkill candidateSkill){
-        return candidateSkillRepository.save(candidateSkill).equals(candidateSkill);
-
-    }
-    public boolean addAll(List<CandidateSkill> list){
-        return candidateSkillRepository.saveAll(list).equals(list);
-    }
-    public List<CandidateSkill> getAll(){
-        return candidateSkillRepository.findAll();
-    }
-    public Optional<CandidateSkill> getByID(long candidate_id, long skill_id){
-        return candidateSkillRepository.findById(new CandidateSkillID(
-                candidateRepository.findById(candidate_id).orElse(new Candidate()),
-                skillRepository.findById(skill_id).orElse(new Skill())
-
-        ));
-    }
-    public void delete(long candidate_id, long skill_id){
-        candidateSkillRepository.deleteById(
-                new CandidateSkillID(
-                        candidateRepository.findById(candidate_id).orElse(new Candidate()),
-                        skillRepository.findById(skill_id).orElse(new Skill())
-                )
-        );
-    }
+//    CandidateSkillRepository candidateSkillRepository;
+//    CandidateRepository candidateRepository;
+//    SkillRepository skillRepository;
+//
+//    @Autowired
+//    public CandidateSkillService(CandidateSkillRepository candidateSkillRepository, CandidateRepository candidateRepository, SkillRepository skillRepository) {
+//        this.candidateSkillRepository = candidateSkillRepository;
+//        this.candidateRepository = candidateRepository;
+//        this.skillRepository = skillRepository;
+//    }
+//
+//    public boolean add(CandidateSkill candidateSkill){
+//        return candidateSkillRepository.save(candidateSkill).equals(candidateSkill);
+//
+//    }
+//    public boolean addAll(List<CandidateSkill> list){
+//        return candidateSkillRepository.saveAll(list).equals(list);
+//    }
+//    public List<CandidateSkill> getAll(){
+//        return candidateSkillRepository.findAll();
+//    }
+//    public Optional<CandidateSkill> getByID(long candidate_id, long skill_id){
+//        return candidateSkillRepository.findById(new CandidateSkillID(
+//                candidateRepository.findById(candidate_id).orElse(new Candidate("Name #" + i, LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)), add, rnd.nextLong(1111111111L, 9999999999L) + "", "email_" + i + "@gmail.com")),
+//                skillRepository.findById(skill_id).orElse(new Skill())
+//
+//        ));
+//    }
+//    public void delete(long candidate_id, long skill_id){
+//        candidateSkillRepository.deleteById(
+//                new CandidateSkillID(
+//                        candidateRepository.findById(candidate_id).orElse(new Candidate("Name #" + i, LocalDate.of(1998, rnd.nextInt(1, 13), rnd.nextInt(1, 29)), add, rnd.nextLong(1111111111L, 9999999999L) + "", "email_" + i + "@gmail.com")),
+//                        skillRepository.findById(skill_id).orElse(new Skill())
+//                )
+//        );
+//    }
 }

@@ -14,10 +14,10 @@ public class CandidateResources {
     @Autowired
     private CandidateServices candidateServices;
 
-    @GetMapping
-    public String getAll(Model model){
-        model.addAttribute("candidates", candidateServices.getAll());
-        return "candidate/candidates";
-    }
+//    @GetMapping
+//    public String getAll(Model model){
+//        model.addAttribute("candidates", candidateServices.getAll());
+//        return "candidate/candidates";
+//    }
 
 }

@@ -1,10 +1,7 @@
 package com.iuh.phu.se.backend.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 import java.time.LocalDate;
@@ -18,6 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "{id}")
+@Builder
 public class Candidate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +42,11 @@ public class Candidate {
     @OneToMany(mappedBy = "candidate",fetch = FetchType.LAZY)
     private List<Experience> experiences;
 
-
+    public Candidate(LocalDate dob, String email, String fullName, String phone, Address address) {
+        this.dob = dob;
+        this.email = email;
+        this.fullName = fullName;
+        this.phone = phone;
+        this.address = address;
+    }
 }

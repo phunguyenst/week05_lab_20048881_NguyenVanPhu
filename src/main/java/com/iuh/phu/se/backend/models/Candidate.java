@@ -36,10 +36,10 @@ public class Candidate {
     @JoinColumn(name = "address")
     private Address address;
 
-    @OneToMany(mappedBy = "candidate",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "candidate",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<CandidateSkill> candidateSkills;
 
-    @OneToMany(mappedBy = "candidate",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "candidate",fetch = FetchType.EAGER)
     private List<Experience> experiences;
 
     public Candidate(LocalDate dob, String email, String fullName, String phone, Address address) {
@@ -48,5 +48,9 @@ public class Candidate {
         this.fullName = fullName;
         this.phone = phone;
         this.address = address;
+    }
+
+    public boolean isNew() {
+        return this.id == 0;
     }
 }

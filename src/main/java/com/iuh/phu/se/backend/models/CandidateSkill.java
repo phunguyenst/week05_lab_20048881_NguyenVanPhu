@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+
 @Table(name = "candidate_skill")
 @IdClass(CandidateSkillID.class)
 public class CandidateSkill {

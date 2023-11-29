@@ -36,8 +36,11 @@ public class Company {
     @JoinColumn(name = "add_id")
     private Address address;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     private List<Job> job;
+    public Company(String compName) {
+        this.compName = compName;
+    }
 
 
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Manager</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Job Manager</h2>
+
+    <a href="/create" class="btn btn-primary mb-3">Add Job</a>
+    <div class="form-group">
+        <label for="skillId">Search Jobs by Skill</label>
+        <form action="/search" method="get">
+            <input type="text" class="form-control" id="skillId" name="skillId" required>
+            <button type="submit" class="btn btn-primary mt-2">Search</button>
+        </form>
+    </div>
+    <!-- Job Table -->
+    <div class="table-container">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Job Name</th>
+                <th>Job Description</th>
+                <th>Company</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="job : ${jobs}">
+                <tr>
+                    <td th:text="${job.id}"></td>
+                    <td th:text="${job.jobName}"></td>
+                    <td th:text="${job.jobDesc}"></td>
+                    <td th:text="${job.company.compName}"></td>
+                    <td>
+                        <a href="#" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Search Form -->
+
+
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

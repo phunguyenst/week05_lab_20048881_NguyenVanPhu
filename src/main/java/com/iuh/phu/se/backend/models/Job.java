@@ -1,9 +1,7 @@
 package com.iuh.phu.se.backend.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
@@ -11,7 +9,8 @@ import java.util.List;
 @Table(name = "job")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 public class Job {
 
     @Id
@@ -28,6 +27,12 @@ public class Job {
     @JoinColumn(name = "comp_id")
     private Company company;
 
-    @OneToMany(mappedBy = "job", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "job", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<JobSkill> jobSkills;
+
+    public Job(String jobDesc, String jobName, Company company) {
+        this.jobDesc = jobDesc;
+        this.jobName = jobName;
+        this.company = company;
+    }
 }

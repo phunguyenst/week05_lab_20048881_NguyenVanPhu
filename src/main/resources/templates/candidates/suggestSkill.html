@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suggest Skill</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<main>
+    <section class="container">
+        <h1 class="text-center">Suggest Skill</h1>
+
+        <form action="/suggest-skill" method="get" class="d-flex gap-3 align-items-center">
+            <div>
+                <label for="candidate-id" class="form-label mb-0">Candidate</label>
+            </div>
+            <select name="candidate-id" id="candidate-id" class="form-select" aria-label="Default select example">
+                <option th:each="candidate : ${candidates}" th:value="${candidate.getId()}" th:text="${candidate.getFullName()}" th:selected="${candidate.getId() == candidateId} ? selected" />
+            </select>
+            <button type="submit" class="btn btn-primary text-nowrap">Get skills</button>
+        </form>
+
+        <div th:if="${skills != null}">
+            <div th:if="${!skills.isEmpty()}">
+                <table class="table mt-3">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Skill name</th>
+                        <th scope="col">Skill description</th>
+                        <th scope="col">Skill type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="skill : ${skills}">
+                        <th scope="row" th:text="${skill.getId()}" />
+                        <td th:text="${skill.getSkillName()}" />
+                        <td th:text="${skill.getSkillDesc()}" />
+                        <td th:text="${skill.getSkillType()}" />
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${skills.isEmpty()}" class="text-center mt-3">Candidate has learned all skills</div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

@@ -28,4 +28,19 @@ public class JobService {
     public List<Job> getAll(){
         return jobRepository.findAll();
     }
+
+    public boolean saveJob(Job job) {
+
+        if (jobRepository.existsById(job.getId())) {
+            return false;
+        }
+
+        jobRepository.save(job);
+        return true;
+    }
+
+    public List<Job> getJobsBySkill(Long skillId) {
+
+        return jobRepository.findByJobSkills_Skill_Id(skillId);
+    }
 }

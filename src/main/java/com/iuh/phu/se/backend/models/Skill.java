@@ -27,6 +27,12 @@ public class Skill {
     @Column(name = "skill_type")
     private SkillType skillType;
 
-    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "skill", fetch = FetchType.EAGER)
     private List<JobSkill> jobSkills;
+
+    public Skill(String skillDesc, String skillName, SkillType skillType) {
+        this.skillDesc = skillDesc;
+        this.skillName = skillName;
+        this.skillType = skillType;
+    }
 }

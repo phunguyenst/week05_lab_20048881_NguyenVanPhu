@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Job</title>
+    <!-- Add Bootstrap CSS link for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <!-- Display list of skills -->
+    <h2>Skill List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Skill Name</th>
+            <th scope="col">Skill Description</th>
+            <!-- Add other skill-related columns as needed -->
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="skill : ${skills}">
+            <td th:text="${skill.skillName}"></td>
+            <td th:text="${skill.skillDescription}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Job creation form -->
+    <form th:action="@{/jobs/create}" th:object="${job}" method="post">
+        <div class="form-group">
+            <label for="jobName">Job Name:</label>
+            <input type="text" id="jobName" name="jobName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="jobDesc">Job Description:</label>
+            <textarea id="jobDesc" name="jobDesc" class="form-control" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="skillNames">Skills (separated by commas):</label>
+            <input type="text" id="skillNames" name="skillNames" class="form-control" placeholder="Skill1, Skill2, ..." required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Job</button>
+    </form>
+</div>
+
+<!-- Add Bootstrap JS and jQuery scripts for better styling (optional) -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

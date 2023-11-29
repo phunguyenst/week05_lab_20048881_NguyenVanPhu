@@ -31,5 +31,8 @@ public class JobSkill {
     @Column(name = "skill_level")
     private SkillLevel skillLevel;
 
-
+    public JobSkill(Job job, Skill skill) {
+        this.job = job;
+        this.skill = skill;
+    }
 }

@@ -10,7 +10,6 @@ import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "{id}")
 
 public class CandidateSkillID implements Serializable {
     private Candidate candidate;

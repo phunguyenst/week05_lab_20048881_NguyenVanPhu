@@ -1,7 +1,9 @@
 package com.iuh.phu.se.backend.services;
 
 import com.iuh.phu.se.backend.models.Candidate;
+import com.iuh.phu.se.backend.models.Job;
 import com.iuh.phu.se.backend.repositories.CandidateRepository;
+import com.iuh.phu.se.backend.repositories.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class CandidateServices {
     @Autowired
     CandidateRepository candidateRepository;
+    @Autowired
+    private JobRepository jobRepository;
     public boolean add(Candidate candidate){
         return candidateRepository.save(candidate).equals(candidate);
     }
@@ -50,5 +54,17 @@ public class CandidateServices {
 
         return candidatePage;
     }
+
+//    public List<Job> suggestJobsForCandidate(Long candidateId) {
+//        Optional<Candidate> candidateOptional = candidateRepository.findById(candidateId);
+//        if (candidateOptional.isPresent()) {
+//            Candidate candidate = candidateOptional.get();
+//            List<Job> suggestedJobs = jobRepository.findByJobSkillsIn(candidate.getCandidateSkills());
+//
+//            return suggestedJobs;
+//        }
+//
+//        return Collections.emptyList();
+//    }
 
 }

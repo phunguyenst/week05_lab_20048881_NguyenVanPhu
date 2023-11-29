@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Include necessary meta tags, title, and CSS links -->
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Suggested Jobs</h1>
+
+    <h2>Candidate Information</h2>
+    <p th:text="${'Name: ' + currentCandidate.fullName}"></p>
+    <p th:text="${'Email: ' + currentCandidate.email}"></p>
+    <p th:text="${'Phone: ' + currentCandidate.phone}"></p>
+
+    <!-- Display list of suggested jobs -->
+    <h2>Suggested Jobs</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Job Name</th>
+            <th scope="col">Job Description</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="job : ${suggestedJobs}">
+            <td th:text="${job.jobName}"></td>
+            <td th:text="${job.jobDesc}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Include necessary JavaScript scripts -->
+</body>
+</html>

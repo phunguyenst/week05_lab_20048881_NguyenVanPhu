@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1>Suggest Job </h1>
+
+    <!-- Display list of jobs -->
+    <table class="table">
+        <thead>
+
+        <tr>
+            <th scope="col">Job Name</th>
+            <!-- Add other job-related columns as needed -->
+        </tr>
+        <a th:href="@{/jobs/joblist}" class="btn btn-primary btn-sm mb-3">
+            <i class="fas fa-plus-circle mr-1"></i> Add Job
+        </a>
+        </thead>
+        <tbody>
+        <tr th:each="job : ${jobs}">
+            <td th:text="${job.jobName}"></td>
+            <td th:text="${job.jobDesc}"></td>
+            <!-- Add other job-related columns as needed -->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
